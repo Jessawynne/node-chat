@@ -20,5 +20,10 @@ server.listen(PORT, () => {
 })
 
 ws.on('connection', socket => {
-  console.log('Socket connected')
+  console.log('socket connected')
+
+  socket.on('sendChat', msg => {
+    console.log(msg)
+    ws.emit('receiveChat', msg)
+  })
 })
