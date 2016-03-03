@@ -24,11 +24,8 @@
       name: n,
       text: t
     })
-
-    // displayChat(n, t)
-
+    displayChat(n, t)
     text.value = ''
-
     event.preventDefault()
   })
 
