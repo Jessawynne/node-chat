@@ -1,46 +1,73 @@
 ;(function () {
-  'use strict'
+  "use strict";
 
-  const ws = io.connect()
+  const ws = io.connect();
 
-  ws.on('connect', () => {
-    console.log('socket connected')
-  })
+  ws.on("connect", (socket) => {
+    console.log("socket connected");
+  });
 
-  ws.on('receiveChat', msg => {
-    console.log(msg)
-    displayChat(msg.name, msg.text)
-  })
+  ws.on('receiveChat', msgs => {
+    msgs.forEach(displayChat);
+  });
 
-  const form = document.querySelector('form')
-  const name = document.querySelector('input[name="name"]')
-  const text = document.querySelector('input[name="text"]')
-  const ul = document.querySelector('ul')
+  const form = document.querySelector('form');
+  const name = document.querySelector('input[name="name"]');
+  const text = document.querySelector('input[name="text"]');
+  const ul = document.querySelector('ul');
 
   form.addEventListener('submit', () => {
-    const [n, t] = [name.value, text.value]
+    const chat = {
+      name: name.value,
+      text: text.value
+    };
 
-    ws.emit('sendChat', {
-      name: n,
-      text: t
-    })
-    displayChat(n, t)
-    text.value = ''
-    event.preventDefault()
-  })
+    ws.emit('sendChat', chat);
 
-  function displayChat (name, text) {
-    const li = generateLI(name, text)
+    //displayChat(chat);
 
-    ul.appendChild(li)
+    text.value = '';
+
+    event.preventDefault();
+  });
+
+  function displayChat (chat) {
+    // if (!document.querySelector(`[data-id="${chat._id}"]`)) {
+      const li = generateLI(chat);
+
+      ul.appendChild(li);
+    // }
   }
 
-  function generateLI (name, text) {
-    const li = document.createElement('li')
-    const textNode = document.createTextNode(`${name}: ${text}`)
+  function generateLI (chat) {
+    const li = document.createElement('li');
+    const textNode = document.createTextNode(`${chat.name}: ${chat.text}`);
+    const dataId = document.createAttribute('data-id');
 
-    li.appendChild(textNode)
-    return li
+    dataId.value = chat._id;
+
+    li.setAttributeNode(dataId);
+    li.appendChild(textNode);
+
+    return li;
   }
+
+  function getJSON(url, cb) {
+    const request = new XMLHttpRequest();
+
+    request.open('GET', url);
+
+    request.onload = () => {
+      cb(JSON.parse(request.responseText));
+    };
+
+    request.send();
+  };
+
+  // document.addEventListener("DOMContentLoaded", () => {
+  //   getJSON("/chats", chats => {
+  //     chats.forEach(displayChat);
+  //   });
+  // });
 
 }());
