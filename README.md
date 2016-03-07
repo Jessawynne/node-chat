@@ -4,7 +4,7 @@ This is a very basic Node.js app that utilizes [Socket.IO](http://socket.io/) to
 
 ###Tools Used
 
-Node, Express, Socket.IO, PostgreSQL, Jade, Nodemon
+Node.js, Express, Socket.IO, PostgreSQL, Jade, Nodemon
 
 ###Getting Started
 
