@@ -12,7 +12,7 @@ Node.js, Express, Socket.IO, PostgreSQL, Jade, Nodemon
 
 ```
 $ git clone https://github.com/Jessawynne/node-chat.git
-cd ./node-chat
+$ cd ./node-chat
 ```
 
 #####To install dependencies:
