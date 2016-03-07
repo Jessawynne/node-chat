@@ -2,20 +2,20 @@
 
 This is a very basic Node.js app that utilizes [Socket.IO](http://socket.io/) to create a real-time chat in the browser. It also uses some of the new features from [ES6](http://es6-features.org/#Constants).
 
-### Tools Used
+###Tools Used
 
-Node, Express, Socket.io, PostgreSQL, Jade, Nodemon, Code editor
+Node, Express, Socket.IO, PostgreSQL, Jade, Nodemon
 
-##Getting Started
+###Getting Started
 
-#####Clone the repository
+#####To clone the repository:
 
 ```
 $ git clone https://github.com/Jessawynne/node-chat.git
 cd ./node-chat
 ```
 
-#####Install dependencies
+#####To install dependencies:
 
 ``` 
 $ npm install
